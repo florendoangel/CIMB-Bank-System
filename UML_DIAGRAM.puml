@@ -1,0 +1,49 @@
+@startuml
+
+interface BankAccount {
+  + showAccountType(): String
+  + getInterestRate(): Double
+  + getBalance(): Double
+  + showBenefits(): String
+  + computeBalanceWithInterest(): Double
+  + showInfo(): String
+}
+
+interface BankAccountDecorator extends BankAccount {
+  + setBankAccount(BankAccount): void
+}
+
+class SavingsAccount implements BankAccount {
+  - accountNumber: String
+  - accountName: String
+  - balance: Double
+  + showAccountType(): String
+  + getInterestRate(): Double
+  + getBalance(): Double
+  + showBenefits(): String
+  + computeBalanceWithInterest(): Double
+  + showInfo(): String
+}
+
+class GSave implements BankAccountDecorator {
+  - bankAccount: BankAccount
+  + GSave(BankAccount)
+  + setBankAccount(BankAccount): void
+  + showAccountType(): String
+  + getInterestRate(): Double
+  + showBenefits(): String
+  + computeBalanceWithInterest(): Double
+}
+
+class UpSave implements BankAccountDecorator {
+  - bankAccount: BankAccount
+  + UpSave(BankAccount)
+  + setBankAccount(BankAccount): void
+  + showAccountType(): String
+  + getInterestRate(): Double
+  + showBenefits(): String
+  + computeBalanceWithInterest(): Double
+}
+
+@enduml
+
